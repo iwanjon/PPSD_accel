@@ -1,0 +1,50 @@
+# ==========================================
+# Build and Packaging Artifacts
+# ==========================================
+build/
+dist/
+*.egg-info/
+*.egg
+
+# ==========================================
+# Python Cache Files
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# ==========================================
+# Virtual Environments
+# ==========================================
+venv/
+env/
+.venv/
+
+# ==========================================
+# Project Output Data (Waveforms & Plots)
+# ==========================================
+# Ignore the folders where the script saves the downloaded data and plots
+station_outputs/
+processed_stations/
+seismic_plots/
+
+# Ignore general data file extensions just in case they leak into the main folder
+*.mseed
+*.png
+*.xml
+# (Optional) If you want to keep your input CSV private/untracked, uncomment the line below:
+# input_stations.csv
+
+# ==========================================
+# IDEs and OS Files
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Jupyter Notebooks (If you use them in examples)
+# ==========================================
+.ipynb_checkpoints/

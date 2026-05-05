@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppsd-accel"
+version = "0.1.0"
+description = "this is just for personal usage only, this model unverified yet"
+authors = [
+    {name = "iwanjon", email = "dummy@gmail.com"}
+]
+requires-python = ">=3.13"
+dependencies = [
+    "obspy==1.4.2",
+    "numpy==2.3.0",
+    "matplotlib==3.10.0"
+]
+
+[tool.setuptools.package-data]
+# This tells the installer to include all .npz files located inside the ppsd_accel folder
+ppsd_accel = ["*.npz"]
+
+[tool.setuptools.packages.find]
+# Explicitly tells setuptools to look for the ppsd_accel directory as the package
+include = ["ppsd_accel*"]

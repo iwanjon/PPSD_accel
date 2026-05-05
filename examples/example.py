@@ -10,6 +10,7 @@ import matplotlib
 matplotlib.use('Agg') # Run in background
 import matplotlib.pyplot as plt
 from scipy.signal import welch
+from dotenv import load_dotenv # <-- New import
 
 # Assuming your custom PPSD module is correctly configured in your environment
 from ppsd_accel.custom_ppsd import CustomPPSD as PPSD
@@ -116,7 +117,7 @@ def download_inventory_from_api(network, station_code):
 # ==========================================
 # Main Processing Pipeline
 # ==========================================
-def process_from_csv(csv_file, output_base_dir="processed_stations"):
+def process_from_csv(csv_file, client_url, client_user, client_password, output_base_dir="processed_stations"):
     """Reads CSV, downloads data, and processes mbkm plots for each station."""
     
     if not os.path.exists(csv_file):
@@ -124,7 +125,13 @@ def process_from_csv(csv_file, output_base_dir="processed_stations"):
         return
 
     df = pd.read_csv(csv_file)
-    client = Client("https://geof.bmkg.go.id", user="mm", password="ina")
+    
+    # Initialize client using the passed arguments
+    try:
+        client = Client(client_url, user=client_user, password=client_password)
+    except Exception as e:
+        print(f"❌ Failed to connect to FDSN client: {e}")
+        return
     
     for idx, row in df.iterrows():
         network = str(row['network']).strip()
@@ -210,15 +217,11 @@ def process_from_csv(csv_file, output_base_dir="processed_stations"):
                     print(f"  ⚠️ No matching active inventory for {trace_id} in this time range. Skipping plots.")
                     continue
 
-                # Process the correction using dynamically determined output_unit (ACC or VEL)
                 tr_corrected = correct_instrument_response(tr, inv_filtered, output_unit)
                 
-                # Execute plotting modules
                 plot_instrument_response(inv_filtered, trace_id, station_dir, output_unit)
                 plot_raw_waveform(tr, trace_id, station_dir)
                 plot_corrected_waveform(tr_corrected, trace_id, station_dir, output_unit)
-                
-                # Pass sensor type to PPSD plotter
                 plot_ppsd_obspy(tr, inv_filtered, trace_id, station_dir, sensor_type)
                 
             print(f"✅ Successfully processed {station}")
@@ -227,5 +230,25 @@ def process_from_csv(csv_file, output_base_dir="processed_stations"):
             print(f"❌ Failed processing station {station}: {e}")
 
 if __name__ == "__main__":
+    # Define your input files here
+    ENV_FILE = ".env"
     CSV_PATH = "input_stations.csv"
-    process_from_csv(csv_file=CSV_PATH, output_base_dir="station_outputs")
+
+    # Load environment variables from the specific file
+    load_dotenv(dotenv_path=ENV_FILE)
+    
+    # Fetch variables, with a fallback default for the URL just in case
+    CLIENT_URL = os.getenv("FDSN_URL", "https://geof.bmkg.go.id")
+    CLIENT_USER = os.getenv("FDSN_USER")
+    CLIENT_PASSWORD = os.getenv("FDSN_PASSWORD")
+    
+    if not CLIENT_USER or not CLIENT_PASSWORD:
+        print(f"⚠️ Warning: FDSN credentials not fully set in '{ENV_FILE}' file!")
+        
+    process_from_csv(
+        csv_file=CSV_PATH, 
+        client_url=CLIENT_URL,
+        client_user=CLIENT_USER,
+        client_password=CLIENT_PASSWORD,
+        output_base_dir="station_outputs"
+    )

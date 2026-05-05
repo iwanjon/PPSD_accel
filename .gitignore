@@ -48,3 +48,5 @@ Thumbs.db
 # Jupyter Notebooks (If you use them in examples)
 # ==========================================
 .ipynb_checkpoints/
+
+**.env

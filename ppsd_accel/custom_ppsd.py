@@ -18,7 +18,7 @@ from obspy.signal.spectral_estimation import (
     earthquake_models
 )
 
-ACC_NOISE_MODEL_FILE = "custom_accel_noise_model.npz"
+ACC_NOISE_MODEL_FILE = Path(__file__).parent / "custom_accel_noise_model.npz"
 
 class CustomPPSD(PPSD):
 

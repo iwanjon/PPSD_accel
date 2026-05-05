@@ -1,0 +1,5 @@
+network,station,location,channel,starttime,endtime,type
+IA,CIJI,*,SH?,2026-05-03T00:00:00,2026-05-04T00:00:00,seismometer
+IA,PSI,*,SH?,2026-05-03T00:00:00,2026-05-04T00:00:00,seismometer
+IA,CIJI,*,HN?,2026-05-03T00:00:00,2026-05-04T00:00:00,accelerometer
+IA,PSI,*,BH?,2026-05-03T00:00:00,2026-05-04T00:00:00,seismometer

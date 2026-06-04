@@ -1,0 +1,2 @@
+network,station,location,channel,starttime,endtime,type,xml_path,mseed_path
+IA,MABKI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.MABKI.xml,

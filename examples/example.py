@@ -81,6 +81,8 @@ def plot_ppsd_obspy(trace, inventory, trace_id, output_dir, sensor_type):
     special_handling = "accelerometer" if sensor_type == "accelerometer" else None
     
     ppsd = PPSD(trace.stats, metadata=inventory, special_handling=special_handling)
+    from pdb import set_trace as sstt
+    sstt()
     ppsd.add(trace)
     ppsd.plot(filename=filename, show=False, cmap=pqlx)
 

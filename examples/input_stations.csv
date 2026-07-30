@@ -1,9 +1,3 @@
 network,station,location,channel,starttime,endtime,type,xml_path,mseed_path
 IA,CIKJI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.CIKJI.xml,
-IA,CSBJI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.CSBJI.xml,E:\PPSD_accel\examples\IA.CSBJI.xml,E:\PPSD_accel\examples\Package_1780557303446.mseed
-IA,KABKI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.KABKI.xml,
-IA,KAKKI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.KAKKI.xml,
-IA,MAKKI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.MAKKI.xml,
-IA,PABKI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.PABKI.xml,
-IA,TEBBI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.TEBBI.xml,
-IA,TUBJI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.TUBJI.xml,
+IA,CSBJI,*,HN?,2026-05-31T00:00:00,2026-06-01T00:00:00,accelerometer,E:\PPSD_accel\examples\IA.CSBJI.xml,E:\PPSD_accel\examples\Package_1780557303446.mseed
